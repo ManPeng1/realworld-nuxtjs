@@ -67,7 +67,6 @@
 </template>
 <script>
 import { createArticle, updateArticle, getArticle } from "@/api/article";
-import { data } from "../../../../../fed-e-task-03-02/code/03-02-codes/vue/test/weex/cases/event/click.vue";
 export default {
   middleware: ["authenticated"],
   name: "EditorIndex",

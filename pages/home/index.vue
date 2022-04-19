@@ -198,6 +198,7 @@ export default {
       await articlesLoad({
         limit,
         offset: (page - 1) * limit,
+        tag: query.tag
       }),
       await getTags(),
     ]);

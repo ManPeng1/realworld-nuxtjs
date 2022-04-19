@@ -91,7 +91,7 @@ export default {
             });
         console.log(data.user, '<=======');
         // 保存用户的登录状态
-        this.$store.commit('setUser', JSON.stringify(data.user))
+        this.$store.commit('setUser', data.user)
 
         // 为了防止刷新页面数据丢失，数据需要持久化
         Cookie.set('user', JSON.stringify(data.user))

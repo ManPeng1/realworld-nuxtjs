@@ -28,7 +28,7 @@
                   class="form-control form-control-lg"
                   rows="8"
                   placeholder="Short bio about you"
-                  v-mode="user.bio"
+                  v-model="user.bio"
                 ></textarea>
               </fieldset>
               <fieldset class="form-group">
@@ -61,6 +61,7 @@
   </div>
 </template>
 <script>
+const Cookie = process.client ? require('js-cookie'): undefined
 import { updateUser } from "@/api/user";
 import { mapState } from "vuex";
 export default {
@@ -98,12 +99,17 @@ export default {
         console.log("data", data);
 
         // 更新用户的登录状态
-        this.$store.commit("setUser", JSON.stringify(data.user));
+        this.$store.commit("setUser", data.user);
 
         // 为了防止刷新页面数据丢失，数据需要持久化
         Cookie.set("user", JSON.stringify(data.user));
 
-        this.$router.push(`/profile/${data.user.username}`);
+        this.$router.push({
+          name: 'profile',
+          params: {
+            username: data.user.username
+          }
+        });
       } catch (e) {
         this.errors = e.response.data.errors;
       }
